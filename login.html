@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>书签登录</title>
+    
+    <link rel="icon" type="image/png" href="img/toplogo.png" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/trim.js"></script>
+
+    <script src="js/sweetalert.min.js"></script>
+
+    <script language="JavaScript">
+        function keyLogin(){
+        if (event.keyCode==13)  //回车键的键值为13
+        $("#login").click(); //调用登录按钮的登录事件
+        }
+</script>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        $("body").on("click","#login",function(){
+            if($("#password").val()==""||$("#userid").val()=="")
+            {
+                //alert("");
+                swal("", "用户和密码不能为空，请检查", "error");
+            }else{
+                $.ajax({
+                    url:"common/login.php",
+                    type:"post",
+                //sync:false,
+                // dataType:"json",
+                data:{
+                    userid:$("#userid").val(),
+                    password:$("#password").val()
+                },
+                success:function(msg){
+                //console.log(msg);
+                //msg=msg.split(".")[0];
+                //console.log(msg);
+                        if(msg=="1"){
+                            //alert("登录成功！");
+                            window.location.href="index.html";
+                        }
+                        else{
+                        //alert("用户或密码错误！");
+                        swal("", "用户或密码错误！", "error");
+                    }
+                }
+            })
+            }
+        });
+
+    })
+</script>
+
+</head>
+
+<body class="gray-bg" onkeyup="keyLogin();">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">签</h1>
+
+            </div>
+            <h3>欢迎访问书签</h3>
+            <!-- <p>登录</p> -->
+            
+            <div class="form-group">
+                <input type="text" class="form-control" name="userid" id="userid" placeholder="账号" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" id="password" placeholder="密码" required="">
+            </div>
+            <button type="submit" id="login" class="btn btn-primary block full-width m-b">登录</button>
+
+            <p class="text-muted text-center"><small>没有账号?</small></p>
+            <a class="btn btn-sm btn-white btn-block" href="register.html">注册</a>
+            
+        </div>
+    </div>
+
+</body>
+
+</html>

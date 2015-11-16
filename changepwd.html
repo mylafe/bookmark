@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>密码修改</title>
+    
+    <link rel="icon" type="image/png" href="img/toplogo.png" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/sweetalert.min.js"></script>
+
+    <script src="js/trim.js"></script>
+
+    <script type="text/javascript">
+     $(function(){
+          $.ajax({
+              url:"common/getUserInfo.php",
+              dataType:"json",
+              success:function(data){
+                // console.log(data.userid);
+                var data = data.userid; 
+                //console.log(data.userid);
+                
+                  if(data==undefined || data=="" || data==null|| data=="-1" )
+                {
+                  location.href="login.html";
+                }
+              }
+          })
+      })
+    $(function(){//文档加载结束
+      $("#submit").click(function(e){
+        if($("#password").val()=="")
+        {
+          //alert("密码不能为空，请重新输入");
+          swal("", "密码不能为空，请重新输入", "error");
+          return;
+        }
+        if($("#password").val()!=$("#password2").val())
+        {
+          //alert("两次密码不一样，请重新输入");
+          swal("", "两次密码不一样，请重新输入", "error");
+          return;
+        }
+        
+        $.ajax({
+            url:"common/changepwd.php",
+            type:"post",
+            data:{
+              password:$("#password").val().trim(),
+            },
+            success:function(msg){
+              //console.log(msg);
+              if(msg=="0")
+              //alert("");
+              swal("", "密码修改失败！", "error");
+              else
+              {
+                //alert("");
+                swal("", "密码修改成功！", "success");
+                location.href="login.html";
+              }
+            },
+            // error:function(resp){
+            //   msg=resp.responseText.split(".")[0];
+            //   //console.log(msg);
+            //   if(msg=="0")
+            //     alert("密码修改失败！");
+            //   else
+            //   {
+            //     alert("密码修改成功！");
+            //     location.href="login.html";
+            //}
+            //}
+          })
+        }); 
+    });
+    
+</script> 
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">改</h1>
+
+            </div>
+            <h3>密码修改</h3>
+            
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="新密码" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password2" id="password2" placeholder="确认密码" required="">
+                </div>
+                <button type="submit" id="submit" class="btn btn-primary block full-width m-b">确认</button>
+
+        </div>
+    </div>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>书签同步系统</title>
+<link rel="icon" type="image/png" href="img/toplogo.png"/>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="css/animate.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- iCheck -->
+<script src="js/plugins/iCheck/icheck.min.js"></script>
+<script src="js/trim.js"></script>
+<script src="js/index.js"></script>
+
+</head>
+
+<body><!-- <body class="pace-done mini-navbar"> --><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+<div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+    <!-- 书签分类模板 -->
+        <ul class="nav" id="side-menu" style="display: block;">
+            <li>
+                <a href="#"><i class="fa fa-tags"></i> <span class="nav-label">模板</span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="#">模板</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-tags"></i> <span class="nav-label">模板</span></a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+    <div id="page-wrapper" class="gray-bg" style="min-height: 359px;">
+    <div class="row border-bottom">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        
+        <form role="search" class="navbar-form-custom" action="#">
+            <div class="form-group">
+                
+            </div>
+        </form>
+    </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span  id="login" class="m-r-sm text-muted welcome-message fa fa-user"></span>
+            </li>
+
+            <li>
+                <a href="#fenlei" data-toggle="modal">
+                    <i class="theme-login fa fa-plus">添加分类</i>
+                </a>
+            </li>
+
+            <li>
+                <a href="#shuqian" data-toggle="modal">
+                    <!-- <i class=""></i>添加书签 -->
+                    <i class="fa fa-bookmark">添加书签</i>
+                </a>
+            </li>
+
+            <li>
+                <a href="changepwd.html">
+                    <i class="fa fa-lock">修改密码</i>
+                </a>
+            </li>
+
+            <li>
+                <a id="exit">
+                    <i class="fa fa-sign-out">安全退出</i>
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+    </div>
+
+
+        <div class="mail-box">
+        <!-- 书签内容模板 -->
+            <table class="table table-hover table-mail">
+            <tbody id="allDataPanel">
+            <tr class="read">
+                <td class="check-mail">
+                </td>
+                <td class="mail-ontact"><a href="#">编号</a></td>
+                <td class="mail-subject"><a href="#">标题</a></td>
+                <td class="">内容</td>
+                <td class="text-right mail-date">时间</td>
+            </tr>
+            <tr class="unread">
+                <td class="check-mail">
+                    <input type="checkbox" class="i-checks">
+                </td>
+                <td class="mail-ontact"><a href="#">未读数据</a></td>
+                <td class="mail-subject"><a href="#">1234567890</a></td>
+                <td class=""><!-- <i class="fa fa-paperclip"> -->你好</i></td>
+                <td class="text-right mail-date">现在几点</td>
+            </tr>
+            
+            </tbody>
+            </table>
+            
+<!-- 添加分类 -->
+<div class="modal fade" id="fenlei" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">添加分类</h4>
+  </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" id="name" placeholder="类别" required="">
+            </div>
+             <button type="submit" id="insert0" class="btn btn-primary block full-width m-b">添加</button>
+        </div>
+</div>
+</div>
+</div>
+
+
+<!-- 添加书签 -->
+<div class="modal fade" id="shuqian" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">添加书签</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+                <input type="text" class="form-control" name="title" id="title" placeholder="标题" required="">
+                <!-- 分类模板 -->
+                <label for="qianfen"></label>
+                    <select id="qianfen" class="form-control m-b" data-style="btn-primary" data-width="auto">
+                      <option>=未分类=</option>
+                      <option value="1">学习</option>
+                      <option value="2">阅读</option>
+                      <option value="3">管理</option>
+                      <option value="4">工具</option>
+                      <option value="5">娱乐</option>
+                      <option value="6">论坛</option>
+                    </select>
+                <input type="text" class="form-control" name="contents" id="contents" placeholder="内容" required="">
+            </div>
+            <button type="submit" id="insert" class="btn btn-primary block full-width m-b">添加</button>
+            </div>
+
+            </div>
+            </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</body>
+
+</html>
